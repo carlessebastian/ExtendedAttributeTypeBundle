@@ -9,13 +9,6 @@
             "homepage": "http://www.akeneo.com"
         }
     ],
-    "require": {
-        "akeneo/pim-community-dev": "dev-master"
-    },
-    "require-dev": {
-        "friendsofphp/php-cs-fixer": "@stable",
-        "phpspec/phpspec": "@stable"
-    },
     "autoload": {
         "psr-4": {
             "Pim\\Bundle\\ExtendedAttributeTypeBundle\\": "src/",
