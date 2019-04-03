@@ -1,5 +1,5 @@
 {
-    "name": "carlessebastian/extended-attribute-type",
+    "name": "carlessebastian/extendedattributetypebundle",
     "type": "symfony-bundle",
     "description": "Provides new attributes types for Akeneo PIM CE and EE",
     "license": "OSL-3.0",
