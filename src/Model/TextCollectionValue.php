@@ -2,9 +2,9 @@
 
 namespace Pim\Bundle\ExtendedAttributeTypeBundle\Model;
 
-use Pim\Component\Catalog\Model\AbstractValue;
-use Pim\Component\Catalog\Model\AttributeInterface;
-use Pim\Component\Catalog\Model\ValueInterface;
+use Akeneo\Pim\Enrichment\Component\Product\Model\AbstractValue;
+use Akeneo\Pim\Structure\Component\Model\AttributeInterface;
+use Akeneo\Pim\Enrichment\Component\Product\Model\ValueInterface;
 
 /**
  * Product value for TextCollection atribute type
@@ -29,6 +29,10 @@ class TextCollectionValue extends AbstractValue implements ValueInterface
         $this->setAttribute($attribute);
         $this->setScope($channel);
         $this->setLocale($locale);
+
+        if (null === $data) {
+            $data = [];
+        }
 
         $this->data = $data;
     }
@@ -55,8 +59,26 @@ class TextCollectionValue extends AbstractValue implements ValueInterface
     /**
      * {@inheritdoc}
      */
-    public function __toString()
+    public function __toString(): string
     {
         return implode(', ', $this->data);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function isEqual(ValueInterface $value): bool
+    {
+        if (!$value instanceof TextCollectionValue ||
+            $this->getScopeCode() !== $value->getScopeCode() ||
+            $this->getLocaleCode() !== $value->getLocaleCode()) {
+            return false;
+        }
+
+        $comparedCollection = $value->getData();
+        $thisCollection = $this->getData();
+
+        return count(array_diff($thisCollection, $comparedCollection)) === 0 &&
+            count(array_diff($comparedCollection, $thisCollection)) === 0;
     }
 }
