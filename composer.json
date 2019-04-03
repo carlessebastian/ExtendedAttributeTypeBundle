@@ -10,7 +10,7 @@
         }
     ],
     "require": {
-        "akeneo/pim-community-standard": "dev-master"
+        "akeneo/pim-community-dev": "master"
     },
     "require-dev": {
         "friendsofphp/php-cs-fixer": "@stable",
